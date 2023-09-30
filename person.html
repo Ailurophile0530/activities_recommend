@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人界面</title>
+
+    <!-- 引入favicon图标 -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!-- 引入我们初始化的css -->
+    <link rel="stylesheet" href="css/base.css">
+    <!-- 引入我们自己的注册页面的css -->
+    <link rel="stylesheet" href="css/person.css">
+    <!-- 在引入我们自己的js文件 -->
+</head>
+
+<body>
+    <div class="w">
+        <header>
+            <div class="logo">
+                <a href="index.html"> <img src="upload/hook-click.png" alt=""></a> WhereToGo
+            </div>
+        </header>
+        <div class="area">
+            <div class="Title">个人界面</div>
+            <div class="Text">Where to go ~</div>
+            <div class="workplace">
+                <div><img src="./upload/girl.png" class="portrait"></div>
+                <div class="IDname"></div>
+                <div class="perInf">
+                    <div class="sex"></div>
+                    <div class="grade"></div>
+                    <div class="height"></div>
+                    <div class="weight"></div>
+                    <div class="BMI"></div>
+                </div>
+                <div class="saying">
+                    个性签名：<textarea class="say_content">    </textarea>
+                </div>
+                <div class="history">历史记录</div>
+                <div class="collect">活动收藏</div>
+                <div class="setting">设置</div>
+                <div class="medal medal1"><span class="medal_half"></span></div>
+                <!-- 户外 -->
+                <div class="medal medal2"><span class="medal_half"></span></div>
+                <!-- 室内 -->
+                <div class="medal medal3"><span class="medal_half"></span></div>
+                <!-- 动植物 -->
+                <div class="medal medal4"><span class="medal_half"></span></div>
+                <!-- 吃饭 -->
+                <div class="medal medal5"><span class="medal_half"></span></div>
+                <!-- 博物馆 -->
+                <div class="medal medal6"><span class="medal_half"></span></div>
+                <!-- 电影院 -->
+                <div class="medal medal7"><span class="medal_half"></span></div>
+                <!-- 艺术 -->
+                <div class="medal medal8"><span class="medal_half"></span></div>
+                <!-- 总次数 -->
+                <div class="echart1"></div>
+                <div class="echart2"></div>
+                <button class="clear">清除LocalData</button>
+            </div>
+        </div>
+        <footer>
+            <div class="mod_copyright">
+                <div class="links">
+                    关于我们 | 联系我们 | 联系客服 | 商家入驻 | 推荐中心 | 手机登录 | 友情链接 | 兴趣联盟 | WhereToGo社区 | 相关公益 | English Site | Contact
+                    U
+                </div>
+                <div class="copyright">
+                    地址：上海市宝山区上大路99号 邮编：200444 电话：021-66132222 传真：021-66136038 邮箱: shu.edu.cn <br>
+                    WhereToGo欢迎您的使用！
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="./js/activities.js"></script>
+    <script src="./js/person.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+        var month = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        var hobby = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        var charge = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+        var Pobj = JSON.parse(localStorage.getItem('Pick' + localStorage.getItem('Now')));
+        if (Pobj != null && Pobj.length != 0) {
+            if (Pobj[Pobj.length - 1].length == 10)
+            {
+                Pobj.splice(Pobj.length - 1, 1);
+                localStorage.setItem('Pick' + localStorage.getItem('Now'), JSON.stringify(Pobj));
+            }
+            for (var i = 0; i < Pobj.length; i++) {
+                var num = parseInt(Pobj[i].substring(Pobj[i].length - 2, Pobj[i].length));
+                var m = parseInt(Pobj[i].substring(5, 7));
+                month[m - 1]++;
+                var h = events[num].hobby;
+                hobby[h - 1]++;
+
+                if (events[num].place == 2)
+                    charge[0]++;
+                else
+                    charge[1]++;
+
+                if (events[num].hobby == 6)
+                    charge[2]++;
+                else if (events[num].hobby == 4)
+                    charge[3]++;
+                else if (events[num].hobby == 10)
+                    charge[4]++;
+                else if (events[num].hobby == 7)
+                    charge[5]++;
+                else if (events[num].hobby == 1)
+                    charge[6]++;
+
+                charge[7] = Pobj.length;
+            }
+        }
+        var medals = document.querySelectorAll('.medal span');
+        for (var i = 0; i <= 6; i++) {
+            if (charge[i] >= 6)
+                medals[i].className = '';
+            else
+                medals[i].className = 'medal_half';
+        }
+        if (charge[7] >= 12)
+            medals[7].className = '';
+        else
+            medals[7].className = 'medal_half';
+
+        // console.log(Pobj);
+        // console.log(Pobj.length);
+        // console.log(month);
+        // console.log(hobby);
+        // console.log(charge);
+        var echart1 = echarts.init(document.querySelector('.echart1'));
+        var option1 = {
+            title: {
+                text: '      年度使用次数'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['FirstHalf', 'SecondHalf'],
+                top: 25
+            },
+            grid: {
+                left: '3%',
+                right: '5%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                }
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['Jan(Jul)', 'Feb(Aug)', 'Mar(Sep)', 'Apr(Oct)', 'May(Nov)', 'Jun(Dec)']
+                },
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: 'FirstHalf',
+                    type: 'line',
+                    smooth: true,
+                    itemStyle: {
+                        normal: {
+                            color: '#dc143c',
+                            lineStyle: {
+                                color: '#dc143c'
+                            }
+                        }
+                    },
+                    data: [month[0], month[1], month[2], month[3], month[4], month[5]]
+                },
+                {
+                    name: 'SecondHalf',
+                    type: 'line',
+                    smooth: true,
+                    itemStyle: {
+                        normal: {
+                            color: '#2e8b57',
+                            lineStyle: {
+                                color: '#2e8b57'
+                            }
+                        }
+                    },
+                    data: [month[6], month[7], month[8], month[9], month[10], month[11]]
+                }
+            ]
+        };
+        echart1.setOption(option1);
+
+        var echart2 = echarts.init(document.querySelector('.echart2'));
+        var option2 = {
+            title: {
+                text: '各类活动占比'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                top: 'bottom'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                }
+            },
+            series: [
+                {
+                    name: '活动类别：',
+                    type: 'pie',
+                    radius: [10, 95],
+                    center: ['50%', '42%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    label: {
+                        show: false
+                    },
+                    data: [
+                        {
+                            value: hobby[0],
+                            name: '艺术',
+                            itemStyle: {
+                                color: 'coral'
+                            }
+                        },
+                        {
+                            value: hobby[1],
+                            name: '体育',
+                            itemStyle: {
+                                color: 'mediumpurple'
+                            }
+                        },
+                        {
+                            value: hobby[2],
+                            name: '手工',
+                            itemStyle: {
+                                color: 'aquamarine'
+                            }
+                        },
+                        {
+                            value: hobby[3],
+                            name: '美食',
+                            itemStyle: {
+                                color: 'lightcoral'
+                            }
+                        },
+                        {
+                            value: hobby[4],
+                            name: '打卡',
+                            itemStyle: {
+                                color: 'royalblue'
+                            }
+                        },
+                        {
+                            value: hobby[5],
+                            name: '自然',
+                            itemStyle: {
+                                color: 'cadetblue'
+                            }
+                        },
+                        {
+                            value: hobby[6],
+                            name: '影视',
+                            itemStyle: {
+                                color: 'bisque'
+                            }
+                        },
+                        {
+                            value: hobby[7],
+                            name: '桌游',
+                            itemStyle: {
+                                color: 'firebrick'
+                            }
+                        },
+                        {
+                            value: hobby[8],
+                            name: '美容',
+                            itemStyle: {
+                                color: 'lightskyblue'
+                            }
+                        },
+                        {
+                            value: hobby[9],
+                            name: '人文',
+                            itemStyle: {
+                                color: 'darkgreen'
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+        echart2.setOption(option2);
+    </script>
+</body>
+
+</html>

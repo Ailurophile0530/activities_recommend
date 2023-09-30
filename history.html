@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>历史记录</title>
+    <style>
+        @font-face {
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?sxhizf');
+            src: url('fonts/icomoon.eot?sxhizf#iefix') format('embedded-opentype'),
+                url('fonts/icomoon.ttf?sxhizf') format('truetype'),
+                url('fonts/icomoon.woff?sxhizf') format('woff'),
+                url('fonts/icomoon.svg?sxhizf#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+
+        .workplace {
+            width: 1720px;
+            height: 420px;
+            overflow-x: auto; 
+        }
+
+        .month {
+            display: inline-block;
+            height: 130px;
+            width: 295px;
+            margin: 1px 20px;
+
+        }
+
+        li {
+            color: rgb(255, 255, 240);
+            height: 20px;
+            margin: 4px 5px 6px;
+            font-size: 18px;
+        }
+
+        ul {
+            height: 120px;
+            width: 295px;
+            overflow: auto;
+            background-color: rgba(165, 188, 231, 0.6);
+        }
+
+        .fix {
+            height: 20px;
+            width: 295px;
+            display: inline-block;
+            margin: 10px 0px;
+            font-size: 18px;
+            color: rgb(255, 255, 240);
+            background-color: #425b9f;
+            font-weight: bold;
+            margin: 0px;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        .clear {
+            box-shadow: inset 0px 1px 3px 0px #4a5c8c;
+            background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+            background-color: #7892c2;
+            border-radius: 5px;
+            border: 1px solid #4e6096;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 11px 23px;
+            text-decoration: none;
+            text-shadow: 0px -1px 0px #283966;
+            top: 10px;
+            left: 135px;
+        }
+
+        .clear:hover {
+            background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+            background-color: #476e9e;
+        }
+
+        .clear:active {
+            top: 10px;
+            left: 135px;
+        }
+    </style>
+    <!-- 引入favicon图标 -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!-- 引入我们初始化的css -->
+    <link rel="stylesheet" href="css/base.css">
+    <!-- 引入我们自己的注册页面的css -->
+</head>
+
+<body>
+    <div class="w">
+        <header>
+            <div class="logo">
+                <a href="index.html" class="gotoindex"> <img src="upload/hook-click.png" alt=""></a> WhereToGo
+            </div>
+        </header>
+        <div class="area">
+            <div class="Title">历史记录</div>
+            <div class="Text">
+                <span class="LogRe">Where to go ~</span>
+            </div>
+            <div class="workplace" style="width:1400px; margin:10px 20px;">
+                <span class="month Jan">
+                    <span class="fix"> Jan </span>
+                    <ul></ul>
+                </span>
+                <span class="month Apr">
+                    <span class="fix"> Apr </span>
+                    <ul></ul>
+                </span>
+                <span class="month July">
+                    <span class="fix"> July </span>
+                    <ul></ul>
+                </span>
+                <span class="month Oct">
+                    <span class="fix"> Oct </span>
+                    <ul></ul>
+                </span>
+                <br>
+                <span class="month Feb">
+                    <span class="fix"> Feb </span>
+                    <ul></ul>
+                </span>
+                <span class="month May">
+                    <span class="fix"> May </span>
+                    <ul></ul>
+                </span>
+                <span class="month Aug">
+                    <span class="fix"> Aug </span>
+                    <ul></ul>
+                </span>
+                <span class="month Nov">
+                    <span class="fix"> Nov </span>
+                    <ul></ul>
+                </span>
+                <br>
+                <span class="month Mar">
+                    <span class="fix"> Mar </span>
+                    <ul></ul>
+                </span>
+                <span class="month June">
+                    <span class="fix"> June </span>
+                    <ul></ul>
+                </span>
+                <span class="month Sept">
+                    <span class="fix"> Sept </span>
+                    <ul></ul>
+                </span>
+                <span class="month Dec">
+                    <span class="fix"> Dec </span>
+                    <ul></ul>
+                </span>
+                <button class="clear">清除最近一条记录</button>
+            </div>
+        </div>
+        <footer>
+            <div class="mod_copyright">
+                <div class="links">
+                    关于我们 | 联系我们 | 联系客服 | 商家入驻 | 推荐中心 | 手机登录 | 友情链接 | 兴趣联盟 | WhereToGo社区 | 相关公益 | English Site | Contact
+                    U
+                </div>
+                <div class="copyright">
+                    地址：上海市宝山区上大路99号 邮编：200444 电话：021-66132222 传真：021-66136038 邮箱: shu.edu.cn <br>
+                    WhereToGo欢迎您的使用！
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="./js/activities.js"></script>
+    <script src="./js/history.js"></script>
+</body>
+
+</html>
