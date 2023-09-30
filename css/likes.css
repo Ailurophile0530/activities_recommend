@@ -1,0 +1,43 @@
+.workplace {
+    width: 100%;
+    height: 420px;
+    overflow-x: auto; 
+}
+
+.case {
+    height: 200px;
+    width: 1300px;
+    padding: 10px;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    background: rgba(255, 249, 249, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border-top: hsl(216, 82%, 22%);
+}
+
+.likecase {
+    padding: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    color: hsl(216, 82%, 22%);
+    opacity: 0.8;
+}
+
+.likebtn {
+    margin-top: auto;
+    margin-left: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    color: hsl(216, 76%, 39%);
+    opacity: 0.8;
+}
+
+.background_pic {
+    margin-left: auto;
+    height: 200px;
+    width: 350px;
+    opacity: 1;
+}

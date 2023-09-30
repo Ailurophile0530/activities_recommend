@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+workplace {
+  font-family: 'Muli', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 1300px;
+  overflow: hidden;
+  margin-right: 200px;
+}
+
+.container {
+  display: flex;
+  height: 400px;
+  width: 1240px;
+  position: absolute;
+  left: 30px;
+  top: -60px;
+}
+
+.panel {
+  height: 445px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+  color: #fff;
+  cursor: pointer;
+  flex: 0.5;
+  margin: 40px 10px;
+  position: relative;
+  transition: all 0.7s ease-in;
+}
+
+.panel h3 {
+  font-size: 60px;
+  text-shadow:5px 5px 3px #00458b;
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  margin: 0;
+  opacity: 0;
+}
+
+.panel.active {
+  flex: 5;
+}
+
+.panel.active h3 {
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4s;
+}
+
+.panel .history {
+  font-size: 20px;
+  text-align:center;
+  line-height:50px;
+  height: 50px;
+  width: 100px;
+  border-radius:10px;
+  position: absolute;
+	left: 81%;
+  top:80%;
+  opacity: 0;
+  background-color: rgb(157, 157, 157);
+  /* color:darkblue */
+}
+
+.panel.active .history {
+  opacity: 1;
+  transition: all 0.3s ease-in 0.4s;
+}
+
+.panel .history.pick{
+  transition: all 0.2s ease-in 0.1s;
+  background-color:rgb(161, 204, 232);
+}
+
+.likebtn1,
+.likebtn2,
+.likebtn3,
+.likebtn4,
+.likebtn5{
+  font-size: 25px;
+  color:#fff;
+  margin-left: 82%;
+  margin-top: 5%;
+  font-weight: bold;
+  opacity: 0;
+  transition: all 0.0s ease-in 0.0s;
+}
+
+.panel.active .likebtn1,
+.panel.active .likebtn2,
+.panel.active .likebtn3,
+.panel.active .likebtn4,
+.panel.active .likebtn5 {
+  transition: opacity 0.0s ease-in 0.5s; 
+  opacity: 1;
+}
+
+
+@media (max-width: 480px) {
+  .container {
+    width: 100vw;
+  }
+
+  .panel:nth-of-type(4),
+  .panel:nth-of-type(5) {
+    display: none;
+  }
+}
+
+.finish{
+  color: #666;
+  font-size: 34px;
+  font-weight: bold;
+  text-align:center;
+  line-height:145px;
+  position: absolute;
+  left: 1290px;
+  top: -20px;
+  height: 445px;
+  width: 80px;
+  border-radius:40px;
+  background-color: #ffebcd;
+}
